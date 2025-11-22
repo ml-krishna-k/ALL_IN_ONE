@@ -1,0 +1,30 @@
+<<<<<<< Updated upstream:backend/render.yaml
+services:
+  - type: web
+    name: everydayai-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 120 --keep-alive 2 --max-requests 1000 --max-requests-jitter 100
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PORT
+        value: 10000
+      - key: PYTHONPATH
+        value: .
+=======
+services:
+  - type: web
+    name: everydayai-backend
+    env: python
+    pythonVersion: 3.11.10
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
+    startCommand: gunicorn main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 120 --keep-alive 2 --max-requests 1000 --max-requests-jitter 100
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PORT
+        value: 10000
+      - key: PYTHONPATH
+        value: .
+>>>>>>> Stashed changes:render.yaml
